@@ -188,64 +188,12 @@ class AppController extends Controller
     }
 
 
-    public function actionQueuetasks () {
 
-        //API Clearspending
-
-        //        $client = new Client();
-        //        $response = $client->createRequest()
-        //            ->setMethod('get')
-        //            ->setUrl('http://openapi.clearspending.ru/restapi/v3/contracts/search')
-        //            ->setData(['pricerange' => '10000-50000' ])
-        //            ->send();
-        //        if ($response->isOk) {
-        //            var_dump($response->data) ;
-        //            die();
-        //        }
-
-        //how to send a task into the queue:
-//        Yii::$app->queue->push(new DownloadJob([
-//            'url' => 'http://example.com/image.jpg',
-//            'file' => '/tmp/image.jpg',
-//        ]));
-
-
-        //To push a job into the queue that should run after 5 minutes:
-
-//        Yii::$app->queue->delay(5 * 60)->push(new DownloadJob([
-//            'url' => 'http://example.com/image.jpg',
-//            'file' => '/tmp/image.jpg',
-//        ]));
-
-        // Push a job into the queue and get a message ID.
-        $id = Yii::$app->queue->push(new DownloadJob());
-
-        VarDumper::dump($id,10,true);
-        die();
-        // Check whether the job is waiting for execution.
-        Yii::$app->queue->isWaiting($id);
-
-        // Check whether a worker got the job from the queue and executes it.
-        Yii::$app->queue->isReserved($id);
-
-        // Check whether a worker has executed the job.
-        Yii::$app->queue->isDone($id);
-
-    }
 
     public function actionTest () {
-
         $localsocket ="tcp://".env('FRONTEND_DOMAIN').":1235";
-
         $instance = stream_socket_client($localsocket, $errno, $errstr);//соединямся с вебсокет-сервером
-
-        $cat = '';
-
-
         fwrite($instance, json_encode(['message' => "message test", 'cat'=>2]) . "\n");//отправляем сообщение
-
-
-
     }
 
 }
