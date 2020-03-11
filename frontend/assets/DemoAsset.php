@@ -28,13 +28,9 @@ class DemoAsset extends AssetBundle
      */
     public $css = [
 
-   // 'css/bootstrap.min.css',
-    'css/magnific-popup.css',
-    'css/circle.css',
-    'css/chatbot.css',
-    'css/typography.css',
+
     'css/style.css',
-    'css/responsive.css',
+
 
     ];
 
@@ -42,17 +38,11 @@ class DemoAsset extends AssetBundle
      * @var array
      */
     public $js = [
+        'js/cookie.js',
+        'js/bootstrap-notify.js',
 
-        //'js/jquery-3.3.1.min.js',
-        'js/popper.min.js',
-        //'js/bootstrap.min.js',
-        'js/owl.carousel.min.js',
-        'js/wow.min.js',
-        'js/app.min.js',
-        'js/circle.js',
-        'js/chatbot.js',
-        'js/main.js',
         'js/custom.js',
+
 
     ];
 

@@ -234,11 +234,18 @@ class AppController extends Controller
     }
 
     public function actionTest () {
-        $sentSuccess = Yii::$app->commandBus->handle(new SendSocketCommand([
 
-            'message' => \GuzzleHttp\json_encode(['type'=>'in','message'=>'dfgdfgdfg']),
-            'user' => 'cfc5b276952e204947105a2ee5a4e609'
-        ]));
+        $localsocket ="tcp://".env('FRONTEND_DOMAIN').":1235";
+
+        $instance = stream_socket_client($localsocket, $errno, $errstr);//соединямся с вебсокет-сервером
+
+        $cat = '';
+
+
+        fwrite($instance, json_encode(['message' => "message test", 'cat'=>2]) . "\n");//отправляем сообщение
+
+
+
     }
 
 }

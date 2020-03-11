@@ -128,7 +128,6 @@ $bundle = BackendAsset::register($this);
                 <div class="pull-left info">
                     <p><?php echo Yii::t('backend', 'Hello, {username}', ['username' => Yii::$app->user->identity->getPublicIdentity()]) ?></p>
 
-                    <p><simple>роль: </simple><?=  \common\modules\chat\components\Helper::GetRoleUser(); ?></p>
 
                 </div>
 
@@ -158,10 +157,60 @@ $bundle = BackendAsset::register($this);
                 'activateParents' => true,
                 'items' => [
                     [
-                        'label' => Yii::t('backend', 'Chat Alerts'),
-                        'url' => ['/chat/chat-alerts/index'],
+                        'label' => Yii::t('backend', 'Сообщения'),
+                        'url' => ['/message/index'],
                         'icon' => '<i class="fa fa-folder-open-o"></i>',
                         'active' => (Yii::$app->controller->id == 'chat-alerts'),
+                        'items' => [
+                            [
+                                'label' => Yii::t('backend', 'Просмотр сообщений'),
+                                'icon' => '<i class="fa fa-bar-chart-o"></i>',
+                                'url' => ['/message/index'],
+                                'badge' => \common\models\Message::find()->active()->count(),
+                                'badgeBgClass' => 'label-success',
+                                'active' => (Yii::$app->controller->id == 'message') ,
+                                'visible' => Yii::$app->user->can('administrator'),
+                            ],
+                            [
+                                'label' => Yii::t('backend', 'Добавить сообщение'),
+                                'icon' => '<i class="fa fa-bar-chart-o"></i>',
+                                'url' => ['/message/create'],
+
+                                'badgeBgClass' => 'label-success',
+                                'active' => (Yii::$app->controller->id == 'message') ,
+                                'visible' => Yii::$app->user->can('administrator'),
+                            ],
+
+
+                        ],
+                    ],
+                    [
+                        'label' => Yii::t('backend', 'Категории'),
+                        'url' => ['/category/index'],
+                        'icon' => '<i class="fa fa-folder-open-o"></i>',
+                        'active' => (Yii::$app->controller->id == 'category'),
+                        'items' => [
+                            [
+                                'label' => Yii::t('backend', 'Просмотр категорий'),
+                                'icon' => '<i class="fa fa-bar-chart-o"></i>',
+                                'url' => ['/category/index'],
+                                'badge' => \common\models\Message::find()->active()->count(),
+                                'badgeBgClass' => 'label-success',
+                                'active' => (Yii::$app->controller->id == 'category') ,
+                                'visible' => Yii::$app->user->can('administrator'),
+                            ],
+                            [
+                                'label' => Yii::t('backend', 'Добавить категорию'),
+                                'icon' => '<i class="fa fa-bar-chart-o"></i>',
+                                'url' => ['/category/create'],
+
+                                'badgeBgClass' => 'label-success',
+                                'active' => (Yii::$app->controller->id == 'category') ,
+                                'visible' => Yii::$app->user->can('administrator'),
+                            ],
+
+
+                        ],
                     ],
                     //системный модуль
                     [
@@ -219,594 +268,7 @@ $bundle = BackendAsset::register($this);
 
                         ],
                     ],
-                    //Модуль аналитики
-                    [
-                        'label' => Yii::t('backend', 'Analytics'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-quote-right"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'stat') ,
-                        'visible' => Yii::$app->user->can('stat-module'),
-                        'items' => [
 
-                            [
-                                'label' => Yii::t('backend', 'Dashboards Stats'),
-                                'url' => ['/stat/dashboard/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'dashboard')&& (Yii::$app->controller->action->id == 'index'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Dashboards Forms'),
-                                'url' => ['/stat/dashboard/forms'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'dashboard') && (Yii::$app->controller->action->id == 'forms'),
-                            ],
-                        ],
-                    ],
-                    //Модуль CRM
-                    [
-                        'label' => Yii::t('backend', 'CRM'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-quote-right"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'crm') ,
-                        'visible' => Yii::$app->user->can('stat-module'),
-                        'items' => [
-
-                            [
-                                'label' => Yii::t('backend', 'Dashboards CRM'),
-                                'url' => ['/crm/site/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'site'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Boards'),
-                                'url' => ['/crm/board/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'board'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Columns'),
-                                'url' => ['/crm/column/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'columns') ,
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Deal'),
-                                'url' => ['/crm/deal/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'deal') ,
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Task'),
-                                'url' => ['/crm/task/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'task') ,
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'News'),
-                                'url' => ['/crm/sitenews/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'sitenews') ,
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Resolution'),
-                                'url' => ['/crm/resolution/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'resolution'),
-                            ],
-                        ],
-                    ],
-                    //модуль пользователей
-                    [
-                        'label' => Yii::t('backend', 'Users'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-users"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'visible' => Yii::$app->user->can('administrator') || Yii::$app->user->can('user'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'Users'),
-                                'icon' => '<i class="fa fa-users"></i>',
-                                'url' => ['/user/index'],
-                                'active' => (Yii::$app->controller->id == 'user') ,
-                                'visible' => Yii::$app->user->can('administrator') || Yii::$app->user->can('user'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Auth Assignment'),
-                                'url' => ['/permit/access/role'],
-                                'active' =>  (Yii::$app->controller->id == 'access') && (Yii::$app->controller->action->id == 'role'),
-                                'icon' => '<i class="fa fa-user-plus"></i>',
-                                'visible' => Yii::$app->user->can('administrator')
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Auth Items'),
-                                'url' => ['/permit/access/permission'],
-                                'active' => (Yii::$app->controller->id ==  'access' ) && (Yii::$app->controller->action->id == 'permission'),
-                                'icon' => '<i class="fa fa-user"></i>',
-                                'visible' => Yii::$app->user->can('administrator')
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Auth Assignment'),
-                                'url' => ['/rbac/rbac-auth-assignment/index'],
-                                'active' =>  (Yii::$app->controller->id == 'rbac-auth-assignment'),
-                                'icon' => '<i class="fa fa-user-plus"></i>',
-                                'visible' => Yii::$app->user->can('administrator')
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Auth Item Child'),
-                                'url' => ['/rbac/rbac-auth-item-child/index'],
-                                'active' => (Yii::$app->controller->id ==  'rbac-auth-item-child' ),
-                                'icon' => '<i class="fa fa-user-plus"></i>',
-                                'visible' => Yii::$app->user->can('administrator')
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Auth Rules'),
-                                'url' => ['/rbac/rbac-auth-rule/index'],
-                                'active' => (Yii::$app->controller->id ==    'rbac-auth-rule' ),
-                                'icon' => '<i class="fa fa-user-plus"></i>',
-                                'visible' => Yii::$app->user->can('administrator')
-                            ],
-
-                        ],
-                    ],
-                    //модуль контента
-                    [
-                        'label' => Yii::t('backend', 'Content'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-files-o"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'content')
-                            || ((Yii::$app->controller->module->id == 'system')
-                                && ((Yii::$app->controller->id == 'category')
-                                    || (Yii::$app->controller->id == 'article')
-                                    || (Yii::$app->controller->id == 'key-storage')))
-                            || ((Yii::$app->controller->module->id == 'widget')
-                                && ((Yii::$app->controller->id == 'text')
-                                    || (Yii::$app->controller->id == 'menu')
-                                    || (Yii::$app->controller->id == 'carousel'))),
-                        'visible' => Yii::$app->user->can('content-module'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'Static pages'),
-                                'url' => ['/content/page/index'],
-                                'icon' => '<i class="fa fa-thumb-tack"></i>',
-                                'active' => (Yii::$app->controller->id == 'page'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Article Categories'),
-                                'url' => ['/content/category/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'category'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Articles'),
-                                'url' => ['/content/article/index'],
-                                'icon' => '<i class="fa fa-file-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'article'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Key-Value Storage'),
-                                'url' => ['/system/key-storage/index'],
-                                'icon' => '<i class="fa fa-arrows-h"></i>',
-                                'active' => (Yii::$app->controller->id == 'key-storage'),
-                                'visible' => Yii::$app->user->can('system/key-storage/index'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Widgets'),
-                                'url' => '#',
-                                'icon' => '<i class="fa fa-code"></i>',
-                                'options' => ['class' => 'treeview'],
-                                'active' => (Yii::$app->controller->module->id == 'widget'),
-                                'items' => [
-                                    [
-                                        'label' => Yii::t('backend', 'Text Blocks'),
-                                        'url' => ['/widget/text/index'],
-                                        'icon' => '<i class="fa fa-circle-o"></i>',
-                                        'active' => (Yii::$app->controller->id == 'text'),
-                                    ],
-                                    [
-                                        'label' => Yii::t('backend', 'Widget Menus'),
-                                        'url' => ['/widget/menu/index'],
-                                        'icon' => '<i class="fa fa-circle-o"></i>',
-                                        'active' => (Yii::$app->controller->id == 'menu'),
-                                    ],
-                                    [
-                                        'label' => Yii::t('backend', 'Widget Carousels'),
-                                        'url' => ['/widget/carousel/index'],
-                                        'icon' => '<i class="fa fa-circle-o"></i>',
-                                        'active' => in_array(Yii::$app->controller->id, ['carousel', 'carousel-item']),
-                                    ],
-                                ],
-                            ],
-
-
-
-
-                        ],
-                    ],
-                    //модуль проекты
-                    [
-                        'label' => Yii::t('backend', 'Projects'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-files-o"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => ( (Yii::$app->controller->module->id == 'prpart') && (Yii::$app->controller->id == 'cases'))
-                                    || ( (Yii::$app->controller->module->id == 'prpart')     && (Yii::$app->controller->id == 'partners')),
-                        'visible' => Yii::$app->user->can('administrator'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'Cases'),
-                                'url' => ['/prpart/cases/index'],
-                                'icon' => '<i class="fa fa-thumb-tack"></i>',
-                                'active' => (Yii::$app->controller->id == 'cases'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Partners'),
-                                'url' => ['/prpart/partners/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'partners'),
-                            ],
-
-
-
-
-
-                        ],
-                    ],
-                    //модуль файл
-                    [
-                        'label' => Yii::t('backend', 'Files'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-files-o"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => ( (Yii::$app->controller->module->id == 'file') && (Yii::$app->controller->id == 'manager'))
-                            || ( (Yii::$app->controller->module->id == 'file')     && (Yii::$app->controller->id == 'storage')),
-                        'visible' => Yii::$app->user->can('administrator'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'File Manager'),
-                                'url' => ['/file/manager/index'],
-                                'icon' => '<i class="fa fa-thumb-tack"></i>',
-                                'active' => (Yii::$app->controller->id == 'manager'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'File Storage'),
-                                'url' => ['/file/storage/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'storage'),
-                            ],
-
-
-
-
-
-                        ],
-                    ],
-                    //модуль блога
-                    [
-                        'label' => Yii::t('backend', 'Blog'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-file-text"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'blog') ,
-                        'visible' => Yii::$app->user->can('blog-module'),
-
-                        'items' => [
-
-
-                            [
-                                'label' => Yii::t('backend', 'Каталог'),
-                                'url' => ['/blog/blog-catalog'],
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-catalog'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Посты'),
-                                'url' => ['/blog/blog-post'],
-                                'icon' => '<i class="fa fa-file"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-post'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Комменты'),
-                                'url' => ['/blog/blog-comment'],
-                                'icon' => '<i class="fa fa-commenting"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-comment'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Тэги'),
-                                'url' => ['/blog/blog-tag'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-tag'),
-                            ],
-                        ],
-                    ],
-                    //модуль магазин
-                    [
-                        'label' => Yii::t('backend', 'Shop'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-file-text"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'shop') || (Yii::$app->controller->module->id == 'order'),
-                        'visible' => Yii::$app->user->can('shop-module'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'KPI Shopping'),
-                                'url' => ['/shop'],
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'active' => (Yii::$app->controller->module->id == 'shop')  && (Yii::$app->controller->id == 'default'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Заказы'),
-                                'url' => ['/order '],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->module->id == 'order') && (Yii::$app->controller->id == 'default'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Склады'),
-                                'url' => ['/shop/stock/index'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'stock'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Производители'),
-                                'url' => ['/shop/producer/index'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'producer'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Catalog'),
-                                'url' => ['/shop/category'],
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'active' => (Yii::$app->controller->id == 'category'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Товары'),
-                                'url' => ['/shop/product'],
-                                'icon' => '<i class="fa fa-file"></i>',
-                                'active' => (Yii::$app->controller->id == 'product'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Поступление'),
-                                'url' => ['/shop/incoming/index'],
-                                'icon' => '<i class="fa fa-commenting"></i>',
-                                'active' => (Yii::$app->controller->id == 'incoming'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Отправление'),
-                                'url' => ['/shop/outcoming/create'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'outcoming'),
-                            ],
-
-                            [
-                                'label' => Yii::t('backend', 'Типы цен'),
-                                'url' => ['/shop/price-type/index'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'price-type'),
-                            ],
-
-
-
-                        ],
-                    ],
-                    //модуль чат
-                    [
-                        'label' => Yii::t('backend', 'Chat'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-file-text"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'chat') ,
-                        'visible' => Yii::$app->user->can('chat-module'),
-
-                        'items' => [
-
-                            [
-                                'label' => Yii::t('backend', 'Chat Widgets'),
-                                'url' =>  Yii::$app->urlManager->createAbsoluteUrl('chat/chat-widgets/index'),
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'active' => (Yii::$app->controller->id == 'chat-widgets'),
-                                'visible' => Yii::$app->user->can('chat/chat-widgets/index'),
-
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Landing Page'),
-                                'url' =>  '/chat/default/index/',
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'options' => [
-                                    'target' => '_blank',
-                                ],
-                                'active' => (Yii::$app->controller->id == 'default'),
-                                'visible' => Yii::$app->user->can('chat/default/index'),
-
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Тестирование бота'),
-                                'url' => '/chat/default/chat/',
-                                'options' => [
-                                    'target' => '_blank',
-                                ],
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'active' => (Yii::$app->controller->id == 'default'),
-                                'visible' => Yii::$app->user->can('chat/default/chat'),
-
-                            ],
-
-                            [
-                                'label' => Yii::t('backend', 'Клиенты'),
-                                'url' => ['/chat/clients/index/'],
-                                'icon' => '<i class="fa fa-commenting"></i>',
-                                'active' => (Yii::$app->controller->id == 'clients'),
-                                'visible' => Yii::$app->user->can('chat/clients/index'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Диалоги'),
-                                'url' => ['/chat/dialogs/index/'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'dialogs'),
-                                'visible' => Yii::$app->user->can('chat/dialogs/index'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Сообщения'),
-                                'url' => ['/chat/messages/index/'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'messages'),
-                                'visible' => Yii::$app->user->can('chat/messages/index'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'Нераспознанные вопросы'),
-                                'url' => ['/chat/messages/novalid/'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-tag'),
-                                'visible' => Yii::$app->user->can('chat/messages/novalid'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'База знаний'),
-                                'url' => ['/chat/question/index/'],
-                                'icon' => '<i class="fa fa-tags"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-tag'),
-                                'visible' => Yii::$app->user->can('chat/question/index'),
-                            ],
-                        ],
-                    ],
-                    //модуль бот
-                    [
-                        'label' => Yii::t('backend', 'Bot'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-file-text"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'bot') ,
-                        'visible' => Yii::$app->user->can('bot-module'),
-
-                        'items' => [
-
-
-                            [
-                                'label' => Yii::t('backend', 'Экраны'),
-                                'url' => ['/bot/screens/index'],
-                                'icon' => '<i class="fa fa-list"></i>',
-                                'active' => (Yii::$app->controller->id == 'blog-catalog'),
-                            ],
-
-                        ],
-                    ],
-
-                    //Файлы
-                    [
-                        'label' => Yii::t('back', 'Files'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-file-photo-o"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'file'),
-                        'visible' => Yii::$app->user->can('file-module'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'File Storage'),
-                                'url' => ['/file/storage/index'],
-                                'icon' => '<i class="fa fa-database"></i>',
-                                'active' => (Yii::$app->controller->id == 'storage'),
-                            ],
-                            [
-                                'label' => Yii::t('backend', 'File Manager'),
-                                'url' => ['/file/manager/index'],
-                                'icon' => '<i class="fa fa-television"></i>',
-                                'active' => (Yii::$app->controller->id == 'manager'),
-                            ],
-
-                        ],
-                    ],
-                    //Прототип Whatsapp
-                    [
-                        'label' =>  'WhatsApp' ,
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-file-photo-o"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->id == 'whatsapp' || Yii::$app->controller->id == 'whatsapp-groups' || Yii::$app->controller->id == 'whatsapp-phones'),
-                        'visible' => Yii::$app->user->can('whatsapp-module'),
-                        'items' => [
-                            [
-                                'label' =>  'WhatsApp Index' ,
-                                'url' => ['/whatsapp/index'],
-                                'icon' => '<i class="fa fa-database"></i>',
-                                'active' => (Yii::$app->controller->id == 'whatsapp'),
-                            ],
-                            [
-                                'label' =>  'WhatsApp Groups' ,
-                                'url' => ['/whatsapp-groups/index'],
-                                'icon' => '<i class="fa fa-database"></i>',
-                                'active' => (Yii::$app->controller->id == 'whatsapp-groups'),
-                            ],
-                            [
-                                'label' =>  'WhatsApp phones' ,
-                                'url' => ['/whatsapp-phones/index'],
-                                'icon' => '<i class="fa fa-television"></i>',
-                                'active' => (Yii::$app->controller->id == 'whatsapp-phones'),
-                            ],
-
-                            ],
-                        ],
-
-                    //Модуль телефонии
-                    [
-                    'label' => Yii::t('backend', 'Phones'),
-                    'url' => '#',
-                    'icon' => '<i class="fa fa-phone"></i>',
-                    'options' => ['class' => 'treeview'],
-                    'active' => (Yii::$app->controller->module->id == 'zadarma') ,
-                    'visible' => Yii::$app->user->can('zadarma-module'),
-                    'items' => [
-
-                        [
-                            'label' => Yii::t('backend', 'Phones Stats'),
-                            'url' => ['/zadarma/zadorma-stat/stat'],
-                            'icon' => '<i class="fa fa-folder-open-o"></i>',
-                            'active' => (Yii::$app->controller->id == 'zadorma-stat')&& (Yii::$app->controller->action->id == 'stat'),
-                        ],
-                        [
-                            'label' => Yii::t('backend', 'Phones History'),
-                            'url' => ['/zadarma/zadorma-stat/index'],
-                            'icon' => '<i class="fa fa-file-o"></i>',
-                            'active' => (Yii::$app->controller->id == 'zadorma-stat')&& (Yii::$app->controller->action->id == 'index'),
-                        ],
-                    ],
-                ],
-                    //Модуль очередей и др
-                    [
-                        'label' => Yii::t('backend', 'Others'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-code"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'queuemanager') ,
-                        'visible' => Yii::$app->user->can('queuemanager-module'),
-                        'items' => [
-
-                            [
-                                'label' => Yii::t('backend', 'Queue Manager'),
-                                'url' => ['/queuemanager/default/index'],
-                                'icon' => '<i class="fa fa-folder-open-o"></i>',
-                                'active' => (Yii::$app->controller->id == 'default'),
-                            ],
-
-                        ],
-                    ],
-
-                    //Переводы сайта
-                    [
-                        'label' => Yii::t('backend', 'Translations'),
-                        'url' => '#',
-                        'icon' => '<i class="fa fa-language"></i>',
-                        'options' => ['class' => 'treeview'],
-                        'active' => (Yii::$app->controller->module->id == 'translation'),
-                        'visible' => Yii::$app->user->can('translation-module'),
-                        'items' => [
-                            [
-                                'label' => Yii::t('backend', 'Translation'),
-                                'url' => ['/translation/default/index'],
-                                'icon' => '<i class="fa fa-language"></i>',
-                                'active' => (Yii::$app->controller->id == 'default'),
-                            ],
-                        ],
-                    ],
 
                 ],
             ]) ?>
@@ -887,16 +349,7 @@ $bundle = BackendAsset::register($this);
                     <label class="control-sidebar-subheading">
                         <a href="/backend/web/sign-in/logout" data-method="post" style="color:inherit">Logout</a>                    </label>
                 </div>
-                <!--<div class="form-group">
-    <label class="control-sidebar-subheading">
-        Report panel usage
-        <input type="checkbox" class="pull-right" checked/>
-    </label>
-    <p>
-        Some information about this general settings option
-    </p>
-</div>-->
-                <!-- /.form-group -->
+
 
 
             </div>

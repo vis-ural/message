@@ -43,13 +43,7 @@ $config = [
             'siteKey' => '6Lfe8YwUAAAAAI4Q63KZT3ZPyVPEWRC-4UOldjwU',
             'secret' => '6Lfe8YwUAAAAAE9BBiHRu8ieHDNxyXG9BXsMyX4v',
         ],
-//        'zadorma' => array(
-//            'class' => \common\modules\zadarma\components\Zadorma::className(),
-//        ),
-//        'cache' => [
-//            'class' => yii\caching\FileCache::class,
-//            'cachePath' => '@common/runtime/cache'
-//        ],
+
         'commandBus' => [
             'class' => '\trntv\tactician\Tactician',
             'commandNameExtractor' => '\League\Tactician\Handler\CommandNameExtractor\ClassNameExtractor',
@@ -202,29 +196,8 @@ $config = [
             'redis' => 'redis', // connection ID
             'channel' => 'queue', // queue channel
         ],
-        'cart' => [
-            'class' => 'common\modules\shop\modules\cart\Cart',
-            'currency' => 'р.', //Валюта
-            'currencyPosition' => 'after', //after или before (позиция значка валюты относительно цены)
-            'priceFormat' => [2,'.', ''], //Форма цены
-        ],
-        'promocode' => [
-            'class' => 'common\modules\shop\modules\promocode\Module',
-            'informer' => 'common\modules\shop\modules\cart\widgets\CartInformer', // namespace to custom cartInformer widget
-            'informerSettings' => [], //settings for custom cartInformer widget
-            'clientsModel' => 'common\models\User', //Модель пользователей
-            //Указываем модели, к которым будем привязывать промокод
-            'targetModelList' => [
-                'Категории' => [
-                    'model' => 'common\modules\shop\models\Category',
-                    'searchModel' => 'common\modules\shop\models\category\CategorySearch'
-                ],
-                'Продукты' => [
-                    'model' => 'common\modules\shop\models\Product',
-                    'searchModel' => 'common\modules\shop\models\product\ProductSearch'
-                ],
-            ],
-        ],
+
+
     ],
     'params' => [
         'adminEmail' => env('ADMIN_EMAIL'),
@@ -253,12 +226,12 @@ $config = [
 ];
 
 if (YII_ENV_PROD) {
-//    $config['components']['log']['targets']['email'] = [
-//        'class' => yii\log\EmailTarget::class,
-//        'except' => ['yii\web\HttpException:*'],
-//        'levels' => ['error', 'warning'],
-//        'message' => ['from' => env('ROBOT_EMAIL'), 'to' => env('ADMIN_EMAIL')]
-//    ];
+    $config['components']['log']['targets']['email'] = [
+        'class' => yii\log\EmailTarget::class,
+        'except' => ['yii\web\HttpException:*'],
+        'levels' => ['error', 'warning'],
+        'message' => ['from' => env('ROBOT_EMAIL'), 'to' => env('ADMIN_EMAIL')]
+    ];
 }
 
 if (YII_ENV_DEV) {
@@ -272,9 +245,9 @@ if (YII_ENV_DEV) {
         ],
     ];
 
-//    $config['components']['cache'] = [
-//        'class' => yii\caching\DummyCache::class
-//    ];
+    $config['components']['cache'] = [
+        'class' => yii\caching\DummyCache::class
+    ];
 
 }
 

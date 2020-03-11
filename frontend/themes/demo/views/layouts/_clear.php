@@ -30,30 +30,12 @@ $bundlePath = Yii::$app->getAssetManager()->getBundle('\frontend\assets\DemoAsse
 <body>
 <?php $this->beginBody() ?>
 
-<!--<div id="mainwrapper" data-uk-grid-match="">-->
-<!--     widget -->
-<!--    <div class="stickleftpadding"  ></div>-->
-<!--    <div id="content-wrap"  style="    padding-left: 85px;">-->
-<!--        --><?php //echo $content ?>
-<!--    </div>-->
-<!--</div>-->
-<?= \common\modules\widget\widgets\Sidebar\SidebarWidget::widget(['content'=>$content]);?>
+
+        <?php echo $content ?>
+
+
 <?php $this->endBody() ?>
 
-
-<div id="loading">
-    <div id="loading-center">
-        <img src="<?= $bundlePath;?>/images/loader.gif" alt="loder">
-    </div>
-</div>
-
-
-
-
-
-<div id="cookie_div" class="align-items-center" style="text-align: center;"> Мы используем cookie...
-    <a class="button grey text-center ml-3" href="#" role="button" id="cookie">Принимаю </a>
-</div>
 
 
 

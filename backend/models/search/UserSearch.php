@@ -49,31 +49,6 @@ class UserSearch extends User
 
 
 
-        if (\Yii::$app->user->can('user')) {
-
-            $user = User::find()->where(['id'=> \Yii::$app->user->getId()])->one();
-                $operators =[\Yii::$app->user->getId()];
-            $chatwidgets = ChatWidgets::find()->where(['user_id'=>$user->id])->all();
-            if ($chatwidgets) {
-
-
-                $widgetoperator = [];
-                foreach ($chatwidgets as $widget) {
-
-                    $widgetoperator = User::find()->where(['widget_id'=>$widget->id])->all();
-
-                    foreach ($widgetoperator as $operator) {
-                        $operators [] = $operator->id;
-                    }
-                }
-            }
-
-
-
-
-            $query->andWhere(['in','id',$operators]);
-
-        }
 
 
 
