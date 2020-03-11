@@ -178,7 +178,7 @@ $bundle = BackendAsset::register($this);
                                 'icon' => '<i class="fa fa-bar-chart-o"></i>',
                                 'url' => ['/message/create'],
 
-                               
+
                                 'active' => (Yii::$app->controller->id == 'message') ,
                                 'visible' => Yii::$app->user->can('administrator'),
                             ],

@@ -22,7 +22,7 @@
 
     function wsStart(client) {
 
-         var   ws = new WebSocket('ws://message.inchats.ru:8089'+'?user='+client);
+         var   ws = new WebSocket('ws://message.loc:8089'+'?user='+client);
 
         ws.onopen = function() {
             console.log('инициализирован клиент '+client);
@@ -80,6 +80,12 @@
                 },
 
                 template: '<div data-notify="container" class="col-xs-11 col-sm-6 alert alert-{0}" role="alert">' +
+
+                '<button type="button" ' +
+                'style="position: absolute;right: 10px;top: 25px;z-index: 1033;" aria-hidden="true" ' +
+                // 'class="btn btn-danger btn-xs" data-notify="stop">скрыть</button>' +
+
+
                 '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
                 '<span data-notify="icon"></span> ' +
 
