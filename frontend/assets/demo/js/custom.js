@@ -22,7 +22,7 @@
 
     function wsStart(client) {
 
-         var   ws = new WebSocket('ws://message.loc:8089'+'?user='+client);
+         var   ws = new WebSocket('ws://message.inchats.ru:8089'+'?user='+client);
 
         ws.onopen = function() {
             console.log('инициализирован клиент '+client);
