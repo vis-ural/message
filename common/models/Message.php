@@ -61,14 +61,15 @@ class Message extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'text' => 'Text',
-            'category' => 'Category',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'title' => 'Заголовок',
+            'text' => 'Текст',
+            'status' => 'Статус',
+            'category' => 'Категория',
+
+            'created_at' => 'Создан',
+            'updated_at' => 'Обновлен',
             'logged_at' => 'Logged At',
-            'counter' => 'просмотры',
+            'counter' => 'Просмотры',
         ];
     }
 
@@ -80,8 +81,8 @@ class Message extends \yii\db\ActiveRecord
     public static function statuses()
     {
         return [
-            self::STATUS_NOT_ACTIVE => Yii::t('common', 'Not Active'),
-            self::STATUS_ACTIVE => Yii::t('common', 'Active'),
+            self::STATUS_NOT_ACTIVE => Yii::t('common', 'не активно'),
+            self::STATUS_ACTIVE => Yii::t('common', 'активно'),
 
         ];
     }

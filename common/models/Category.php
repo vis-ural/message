@@ -61,11 +61,11 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'text' => 'Text',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'title' => 'Заголовок',
+            'text' => 'Текст',
+            'status' => 'Статус',
+            'created_at' => 'Создан',
+            'updated_at' => 'Обноввлен',
             'logged_at' => 'Logged At',
         ];
     }
@@ -76,8 +76,8 @@ class Category extends \yii\db\ActiveRecord
     public static function statuses()
     {
         return [
-            self::STATUS_NOT_ACTIVE => Yii::t('common', 'Not Active'),
-            self::STATUS_ACTIVE => Yii::t('common', 'Active'),
+            self::STATUS_NOT_ACTIVE => Yii::t('common', 'не активно'),
+            self::STATUS_ACTIVE => Yii::t('common', 'активно'),
 
         ];
     }

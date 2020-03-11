@@ -160,7 +160,7 @@ $bundle = BackendAsset::register($this);
                         'label' => Yii::t('backend', 'Сообщения'),
                         'url' => ['/message/index'],
                         'icon' => '<i class="fa fa-folder-open-o"></i>',
-                        'active' => (Yii::$app->controller->id == 'chat-alerts'),
+                        'active' => (Yii::$app->controller->id == 'message'),
                         'items' => [
                             [
                                 'label' => Yii::t('backend', 'Просмотр сообщений'),

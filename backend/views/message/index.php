@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\MessageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Messages';
+$this->title = 'Сообщения';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="message-index">
@@ -24,7 +24,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
 
             [
-                'attribute' => 'category ',
+
+                'attribute' => 'category',
                 'format'=>'html',
                 'value'=>function($data){
                     $cat = [];
