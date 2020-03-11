@@ -194,7 +194,7 @@ $bundle = BackendAsset::register($this);
                                 'label' => Yii::t('backend', 'Просмотр категорий'),
                                 'icon' => '<i class="fa fa-bar-chart-o"></i>',
                                 'url' => ['/category/index'],
-                                'badge' => \common\models\Message::find()->active()->count(),
+                                'badge' => \common\models\Category::find()->active()->count(),
                                 'badgeBgClass' => 'label-success',
                                 'active' => (Yii::$app->controller->id == 'category') ,
                                 'visible' => Yii::$app->user->can('administrator'),
