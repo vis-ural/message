@@ -1,11 +1,10 @@
 # Env
 /.env
 
-# модули
-common/modules
+
 
 common/modules/queuemanager/components/domain.php
-common/modules/queuemanager/components/log.log
+common/runtime/log.log
 
 
 # компоненты задарма
@@ -51,6 +50,3 @@ tests/codeception/*/_support/_generated/*
 
 composer.lock
 
-
-build_dev.xml
-build_prod.xml
