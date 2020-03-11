@@ -1,6 +1,6 @@
 <?php
 return [
-    'id' => 'demo.infomarketstudio.ru',
+    'id' => 'demo',
     'basePath' => dirname(__DIR__),
     'components' => [
         'urlManager' => require(__DIR__ . '/_urlManager.php'),
