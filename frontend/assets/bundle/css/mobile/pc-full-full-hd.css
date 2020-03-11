@@ -1,0 +1,12 @@
+/*  PC FULL FULL HD */
+@media (min-width: 1768px){
+
+    .mob-pad-120{
+        margin-top: 120px !important;
+    }
+    .mob-pad-200{
+        margin-top: 200px !important;
+    }
+
+
+}

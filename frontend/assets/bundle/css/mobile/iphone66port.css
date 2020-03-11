@@ -1,0 +1,40 @@
+/* Iphone 3,4,5,6  Portreit */
+@media (min-width: 375px) and (max-width: 413px) {
+    /*@viewport {*/
+        /*width: device-width;*/
+        /*width: 641px;*/
+        /*zoom: 0.6;*/
+    /*}*/
+
+    .mybreadcrumbs_container {
+        display:none;
+
+    }
+    .slider-revolution-5-container {
+        display:none;
+    }
+    .akcia {
+        margin-top: 378px;
+    }
+    .mybreadcrumbs {
+        height:68px;
+    }
+    .mob-pad-30{
+        margin-top: 30px;
+    }
+    .mob-pad-60{
+        margin-top: 60px;
+    }
+    .hidden-xs {
+        display:none;
+    }
+    .mob-pad-330{
+        margin-top: 330px !important;
+    }
+
+
+    .mob-font-13{
+        font-size: 13px !important;
+    }
+
+}

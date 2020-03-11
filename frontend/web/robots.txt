@@ -1,0 +1,42 @@
+User-agent: *
+Allow: /
+Allow: /about
+Allow: /partners
+Allow: /about/vakansia
+
+Allow: /uslugi
+Allow: /uslugi/*
+Allow: /user/sign-in/oauth?authclient=facebook
+Allow: /user/sign-in/oauth?authclient=github
+
+Allow: /portfolio
+Allow: /portfolio/*
+
+Allow: /blog
+Allow: /blog/*
+
+Allow: /contact
+
+Allow: /terms-of-use
+Allow: /politica
+
+Allow: /terms-of-use
+Allow: /politica
+Allow: /news
+
+Disallow: /webdev
+
+Disallow: /analytics
+
+
+Disallow: /blog?ArticleSearch[category_id]=*
+Disallow: /article/view?slug=*
+Disallow: /getaudit
+Disallow: /ordersite
+Disallow: /orderbot
+Disallow: /orderanalytics
+Disallow: /orderkp
+
+Host: https://infomarketstudio.ru
+
+Sitemap: https://infomarketstudio.ru/sitemap.xml

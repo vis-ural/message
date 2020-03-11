@@ -1,0 +1,142 @@
+/* Iphone 3,4,5,6  Portreit */
+@media (min-width: 320px) and (max-width: 374px) {
+    /*@viewport {*/
+        /*width: device-width;*/
+        /*zoom: 0.5;*/
+    /*}*/
+
+	.akcia {
+		margin-top: 378px;
+	}
+    .btn-sm {
+    padding: 5px 10px !important;
+    }
+    
+     .slider-revolution-5-container {
+		 display:none;
+	 }
+
+	.call-to-action h1, .call-to-action a {
+    font-size:22px;
+        padding-bottom: 15px;
+   }
+	
+	.call-to-action p {
+ 
+    font-size: 20px;
+    font-weight: 400;
+	}
+	
+	.feature-box p {
+    font-size:20px;
+	}
+
+	.hidden-xs {
+		display:none;
+	}
+	.head_header{
+		font-size:34px;
+		line-height:2;
+	}
+	
+	.head_logo {
+		font-size:28px;
+		line-height:2;
+	}
+	.utp1 {
+		line-height:2;
+		font-size:84px;
+	}
+	
+	.utp1_img {
+		 padding-top:100px;
+	}
+	.head_logo_descr {
+		font-size:20px;
+		font-weight:400;
+		line-height:1.5 !important;
+	}
+	.utp2_description {
+		font-size:15px;
+		font-weight:400;
+		line-height:2 !important;
+		padding-top:30px;
+		padding-left:20px;
+		padding-right:20px;
+	}
+	.utp2_separator {
+		padding-top:100px;
+	}
+	.utp3 {
+		font-size:50px;
+		font-weight:400;
+		padding-top:80px;
+		padding-bottom:80px;
+	}
+	.mybreadcrumbs_container {
+		display:none;
+
+	}
+	.mybreadcrumbs {
+		height:68px;
+	}
+	.mob-pad-30{
+		margin-top: 30px;
+	}
+	.mob-pad-60{
+		margin-top: 60px;
+	}
+	.mob-pad-120{
+		margin-top: 120px !important;
+	}
+	.mob-pad-200{
+		margin-top: 200px !important;
+	}
+	.mob-pad-330{
+		margin-top: 400px !important;
+	}
+
+
+	.mob-font-13{
+		font-size: 13px !important;
+	}
+	.hero-title{
+		font-size: 21px !important;
+	}
+
+	.hidden-iphone5{
+		display: none;
+	}
+	.uderganie{
+		margin-right: 30px;
+		margin-left:30px;
+		padding-top:48px;
+
+	}
+	.akcia{
+		margin-top:20px !important;
+	}
+	.otnoshenia{
+		margin-right: 30px;
+		margin-left:30px;
+		padding-top:48px;
+	}
+	.convertation{
+		margin-right: 30px;
+		margin-left:30px;
+		padding-top:48px;
+	}
+	.pklients{
+		margin-right: 30px;
+		margin-left:30px;
+		padding-top:48px;
+	}
+	.ohvat{
+		margin-right: 30px;
+		margin-left:30px;
+		padding-top:30px;
+	}
+	.chatboth2{
+		font-size: 26px;
+	}
+}

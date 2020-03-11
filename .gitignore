@@ -1,6 +1,56 @@
-assets/*
-!assets/.gitignore
-protected/runtime/*
-!protected/runtime/.gitignore
-protected/data/*.db
-themes/classic/views/
+# Env
+/.env
+
+# модули
+common/modules
+
+common/modules/queuemanager/components/domain.php
+common/modules/queuemanager/components/log.log
+
+
+# компоненты задарма
+common/components/zadarma
+
+common/modules/queuemanager/components/domain.php
+common/modules/queuemanager/components/log.log
+common/modules/queuemanager/components/nohup.out
+
+
+
+# Composer
+/vendor
+composer.phar
+
+# JS
+node_modules
+spa/npm-debug.log
+spa/yarn-error.log
+
+# IDE
+.idea
+nbproject
+.buildpath
+.project
+.settings
+
+# windows thumbnail cache
+Thumbs.db
+
+# Mac DS_Store Files
+.DS_Store
+
+# phpunit
+phpunit.phar
+/phpunit.xml
+
+# Vagrant
+/.vagrant
+
+# Tests
+tests/codeception/*/_support/_generated/*
+
+composer.lock
+
+
+build_dev.xml
+build_prod.xml

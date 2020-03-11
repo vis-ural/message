@@ -1,0 +1,16 @@
+/*  PC HD */
+@media (min-width: 1280px) and (max-width: 1439px) {
+
+    .mob-pad-120{
+        margin-top: 120px !important;
+    }
+    .mob-pad-200{
+        margin-top: 200px !important;
+    }
+    .screen {
+        margin-left: 92%;
+    }
+}
+.title {
+    font-family: Arial;
+}

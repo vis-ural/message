@@ -1,0 +1,15 @@
+
+/*  Ipad Portreit */
+@media (min-width: 768px) and (max-width: 1023px) {
+     .hidden-xs{
+         display:none;
+     }
+
+    .mob-pad-120{
+        margin-top: 120px !important;
+    }
+    .mob-pad-200{
+        margin-top: 200px !important;
+    }
+
+}
